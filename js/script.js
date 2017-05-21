@@ -33,25 +33,37 @@
 		width: 25,
 		speed: 150,
 		color: "#64b5f6",
-		actualPosition: [area[startY][startX]],
+		actualPositionX: startX,
+		actualPositionY: startY,
 		setNewPosition: function () {
-			snake.actualPosition = [area[startY][startX]] = 1;
+			snake.actualPositionX = startX;
+			snake.actualPositionY = startY;
+			area[snake.actualPositionY][snake.actualPositionX] = 1;
 		},
 		goRight: function () {
 			startX++;
-			console.log(startX);
+			// console.log("x", startX);
+			snake.setNewPosition();
+			console.log("x", snake.actualPositionX);
+			displaySnake();
 		},
 		goLeft: function () {
 			startX--;
-			console.log(startX);
+			snake.setNewPosition();
+			console.log("x", snake.actualPositionX);
+			displaySnake();
 		},
 		goDown: function () {
 			startY++;
-			console.log(startY);
+			snake.setNewPosition();
+			console.log("y", snake.actualPositionY);
+			displaySnake();
 		},
 		goUp: function () {
 			startY--;
-			console.log(startY);
+			snake.setNewPosition();
+			console.log("y", snake.actualPositionY);
+			displaySnake();
 		},
 	}
 
@@ -59,7 +71,9 @@
 
 	let positionY;
 
+
 	function displaySnake() {
+		gameOver();
 		area.forEach(function (element, index) {
 			positionY = snake.width * index;
 
@@ -80,8 +94,9 @@
 	let snakeUp;
 	let snakeDown;
 
+
 	function gameOver() {
-		if (startX > 20 || startX < 0 || startY > 20 || startY < 0) {
+		if (snake.actualPositionX > 20 || snake.actualPositionX < 0 || snake.actualPositionY > 20 || snake.actualPositionY < 0) {
 			alert('game over');
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeLeft);
@@ -100,8 +115,6 @@
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeDown);
 			snake.setNewPosition();
-			displaySnake();
-			gameOver();
 		}
 		// On arrow up key press 
 		else if (e.keyCode === 38) {
@@ -110,8 +123,6 @@
 			window.clearInterval(snakeLeft);
 			window.clearInterval(snakeDown);
 			snake.setNewPosition();
-			displaySnake();
-			gameOver();
 		}
 		// On arrow right key press 
 		else if (e.keyCode === 39) {
@@ -119,8 +130,7 @@
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeLeft);
 			window.clearInterval(snakeDown);
-			displaySnake();
-			gameOver();
+			snake.setNewPosition();
 		}
 		// On arrow down key press 
 		else if (e.keyCode === 40) {
@@ -128,8 +138,7 @@
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeLeft);
 			window.clearInterval(snakeRight);
-			displaySnake();
-			gameOver();
+			snake.setNewPosition();
 		}
 	});
 
