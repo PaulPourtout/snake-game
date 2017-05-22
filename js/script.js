@@ -26,19 +26,15 @@
 		positionY: null,
 		getApplePosition: function () {
 			// Create random apple position in area
-			let applePositionX = Math.floor(Math.random() * (20));
-			let applePositionY = Math.floor(Math.random() * (20));
+			apple.positionX = Math.floor(Math.random() * (20));
+			apple.positionY = Math.floor(Math.random() * (20));
 
-			snake.presence.forEach(function(element) {
-				
-					if (applePositionX === element.x && applePositionY === element.y) {
-						apple.positionX = applePositionX;
-						apple.positionY = applePositionY;
-					}
-					else {
-						applePositionX = Math.floor(Math.random() * (20));
-						applePositionY = Math.floor(Math.random() * (20));
-					}
+			snake.presence.forEach(function (element) {
+				console.log(element);
+				if (apple.positionX === element.x && apple.positionY === element.y) {
+					apple.positionX = Math.floor(Math.random() * (20));
+					apple.positionY = Math.floor(Math.random() * (20));
+				}
 			});
 		},
 		generateApple: function () {
