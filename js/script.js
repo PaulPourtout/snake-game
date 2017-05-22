@@ -218,4 +218,10 @@
 	apple.generateApple();
 	displaySnakeAndApples();
 
+
+	const startingInfo = document.getElementById('starting-info');
+	document.addEventListener('keydown', (e) => {
+		startingInfo.style.display = "none";
+	});
+
 })()
