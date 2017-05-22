@@ -1,5 +1,7 @@
 # Javascript Snake Game
 
+Find the game here : https://paulpourtout.github.io/snake-game/
+
 ## Etapes :
 1. Créer une zone en canvas sur une page HTML
 2. A la pressions des flèches du clavier, remplir les cases de la zone de canvas
