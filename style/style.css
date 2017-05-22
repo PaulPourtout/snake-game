@@ -13,3 +13,24 @@ body {
 	background-color: white;
 	border: 4px solid #64b5f6;
 }
+
+#game-container {
+	position: relative;
+}
+
+#score-container {
+	color: #64b5f6;
+	font-size: 1.1rem;
+	border: 4px solid #64b5f6;
+	padding: 5px;
+	margin: 0;
+	background-color: #fff;
+	position: absolute;
+	top: -45px;
+	left: 0;
+}
+
+#score {
+	font-weight: bold;
+	font-size: 1.3rem;
+}

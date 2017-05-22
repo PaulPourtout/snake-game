@@ -137,7 +137,7 @@
 	function eatApple() {
 		if (apple.positionX === snake.positionX && apple.positionY === snake.positionY) {
 			snake.apples++;
-			score.innerHTML = snake.apples;
+			score.innerHTML = snake.apples < 10 ? '0' + snake.apples : snake.apples;
 			apple.getApplePosition();
 			apple.generateApple();
 			snake.speed = snake.speed - 5;
