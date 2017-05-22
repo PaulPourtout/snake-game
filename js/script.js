@@ -2,85 +2,103 @@
 	const canvas = document.getElementById('gameArea');
 	const ctx = canvas.getContext('2d');
 
-	let startX = 0;
-	let startY = 0;
-
 	// object representing the game area as an array
-	const area =
-		[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+	// let area =
+	// 	[[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	// 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+
+		const area = [];
+		for(let i = 0; i < 20; i++) {
+			area.push([]);
+			for(let y = 0; y < 20; y++) {
+				area[i].push(0);
+			}
+		}
+const areaBackgroundColor = "#FFFFFF";
+const startingPositionX = 3;
+const startingPositionY = 3;
+
+		console.log(area);
 
 	// Snake's settings and methods
 	const snake = {
 		width: 25,
 		speed: 150,
+		length: 3,
 		color: "#64b5f6",
-		actualPositionX: startX,
-		actualPositionY: startY,
+		snakePosition: [],
+		positionX: startingPositionX,
+		positionY: startingPositionY,
 		setNewPosition: function () {
-			snake.actualPositionX = startX;
-			snake.actualPositionY = startY;
-			area[snake.actualPositionY][snake.actualPositionX] = 1;
+			gameOver();
+			const newPosition = area[snake.positionY][snake.positionX] = 1;
+			snake.snakePosition.push(newPosition);
+
+
 		},
 		goRight: function () {
-			startX++;
-			// console.log("x", startX);
+			snake.positionX++;
 			snake.setNewPosition();
-			console.log("x", snake.actualPositionX);
+			console.log("x", snake.positionX);
 			displaySnake();
 		},
 		goLeft: function () {
-			startX--;
+			snake.positionX--;
 			snake.setNewPosition();
-			console.log("x", snake.actualPositionX);
+			console.log("x", snake.positionX);
 			displaySnake();
 		},
 		goDown: function () {
-			startY++;
+			snake.positionY++;
 			snake.setNewPosition();
-			console.log("y", snake.actualPositionY);
+			console.log("y", snake.positionY);
 			displaySnake();
 		},
 		goUp: function () {
-			startY--;
+			snake.positionY--;
 			snake.setNewPosition();
-			console.log("y", snake.actualPositionY);
+			console.log("y", snake.positionY);
 			displaySnake();
 		},
 	}
 
 
-
+// displaySnake function draw the snake in the canvas area with informations from the area array
 	let positionY;
-
+	let positionX;
 
 	function displaySnake() {
-		gameOver();
 		area.forEach(function (element, index) {
 			positionY = snake.width * index;
 
 			element.forEach(function (element, index, array) {
+				positionX = snake.width * index;
+
 				if (element === 1) {
-					positionX = snake.width * index;
 					ctx.fillStyle = snake.color;
+					ctx.fillRect(positionX, positionY, snake.width, snake.width);
+				}
+
+				else {
+					ctx.fillStyle = areaBackgroundColor;
 					ctx.fillRect(positionX, positionY, snake.width, snake.width);
 				}
 			});
@@ -96,14 +114,20 @@
 
 
 	function gameOver() {
-		if (snake.actualPositionX > 20 || snake.actualPositionX < 0 || snake.actualPositionY > 20 || snake.actualPositionY < 0) {
+		if (snake.positionX < 0
+		 || snake.positionX > 20 
+		 || snake.positionY < 0 
+		 || snake.positionY > 20
+		 ) {
 			alert('game over');
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeLeft);
 			window.clearInterval(snakeRight);
 			window.clearInterval(snakeDown);
-			startX = 0;
-			startY = 0;
+
+			snake.positionX = startingPositionX;
+			snake.positionY = startingPositionY;
+			location.reload();
 		}
 	}
 	// Change snake direction with arrow keys
