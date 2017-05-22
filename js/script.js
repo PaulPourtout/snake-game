@@ -25,12 +25,24 @@
 		positionX: null,
 		positionY: null,
 		getApplePosition: function () {
-			const applePositionX = Math.floor(Math.random() * (20));
-			const applePositionY = Math.floor(Math.random() * (20));
-			apple.positionX = applePositionX;
-			apple.positionY = applePositionY;
+			// Create random apple position in area
+			let applePositionX = Math.floor(Math.random() * (20));
+			let applePositionY = Math.floor(Math.random() * (20));
+
+			snake.presence.forEach(function(element) {
+				
+					if (applePositionX === element.x && applePositionY === element.y) {
+						apple.positionX = applePositionX;
+						apple.positionY = applePositionY;
+					}
+					else {
+						applePositionX = Math.floor(Math.random() * (20));
+						applePositionY = Math.floor(Math.random() * (20));
+					}
+			});
 		},
 		generateApple: function () {
+			apple.getApplePosition();
 			area[apple.positionY][apple.positionX] = 2;
 		}
 	};
@@ -86,16 +98,21 @@
 
 	function displaySnakeAndApples() {
 		area.forEach(function (element, index) {
+			// Calcul snake position by multiplying cell's width by index in the area array
+			// ex: snake.width = 25 and index of Y axes is 2 => positionY would be 25 * 2 = 50
 			snakePositionY = snake.width * index;
 
 			element.forEach(function (element, index, array) {
+				// Same as the Y position but for the X axes here
 				snakePositionX = snake.width * index;
 
+				// If it's a 1 then fill with snake background color
 				if (element === 1) {
 					ctx.fillStyle = snake.color;
 					ctx.fillRect(snakePositionX, snakePositionY, snake.width, snake.width);
 				}
 
+				// If it's a 2 then fill with apple background color
 				else if (element === 2) {
 					const applePositionX = snakePositionX + snake.width / 2;
 					const applePositionY = snakePositionY + snake.width / 2;
@@ -107,6 +124,7 @@
 					ctx.closePath();
 				}
 
+				// If it's a 0 then fill with area background color
 				else {
 					ctx.fillStyle = areaBackgroundColor;
 					ctx.fillRect(snakePositionX, snakePositionY, snake.width, snake.width);
@@ -118,6 +136,7 @@
 
 	// Test if the player lose the game
 	function testGameOver() {
+		// If the snake bites itself
 		snake.presence.forEach(function (element) {
 			if (snake.positionX === element.x
 				&& snake.positionY === element.y
@@ -126,6 +145,7 @@
 			}
 		});
 
+		// If the snake touch borders
 		if (snake.positionX < 0 || snake.positionX > 20
 			|| snake.positionY < 0 || snake.positionY > 20) {
 			gameOver();
@@ -135,10 +155,10 @@
 
 	// If the snake eat an apple increase snake's length and speed
 	function eatApple() {
+		// If head of the snake touch an apple
 		if (apple.positionX === snake.positionX && apple.positionY === snake.positionY) {
 			snake.apples++;
 			score.innerHTML = snake.apples < 10 ? '0' + snake.apples : snake.apples;
-			apple.getApplePosition();
 			apple.generateApple();
 			snake.speed = snake.speed - 5;
 			snake.length++;
@@ -152,7 +172,7 @@
 
 	// When the game is over is resets
 	function gameOver() {
-		alert('game over');
+		alert('Game over ! try again');
 		window.clearInterval(snakeUp);
 		window.clearInterval(snakeLeft);
 		window.clearInterval(snakeRight);
@@ -199,12 +219,8 @@
 		}
 	});
 
-
-
-	apple.getApplePosition();
+	// Generate the first apple before the player starts playing
 	apple.generateApple();
 	displaySnakeAndApples();
-
-
 
 })()
