@@ -38,21 +38,22 @@ const startingPositionY = 3;
 
 	// Snake's settings and methods
 	const snake = {
+		apples: 0,
 		width: 25,
 		speed: 150,
 		length: 8,
 		color: "#64b5f6",
-		snakePosition: [],
+		presence: [],
 		positionX: startingPositionX,
 		positionY: startingPositionY,
 		setNewPosition: function () {
-			gameOver();
+			testGameOver();
 			area[snake.positionY][snake.positionX] = 1;
 			const newPosition = {x : snake.positionX, y: snake.positionY};
-			snake.snakePosition.push(newPosition);
+			snake.presence.push(newPosition);
 
-			if (snake.snakePosition.length > snake.length) {
-				const oldPosition = snake.snakePosition.shift();
+			if (snake.presence.length > snake.length) {
+				const oldPosition = snake.presence.shift();
 				area[oldPosition.y][oldPosition.x] = 0;
 			}
 
@@ -60,25 +61,25 @@ const startingPositionY = 3;
 		goRight: function () {
 			snake.positionX++;
 			snake.setNewPosition();
-			console.log("x", snake.positionX);
+			// console.log("x", snake.positionX);
 			displaySnake();
 		},
 		goLeft: function () {
 			snake.positionX--;
 			snake.setNewPosition();
-			console.log("x", snake.positionX);
+			// console.log("x", snake.positionX);
 			displaySnake();
 		},
 		goDown: function () {
 			snake.positionY++;
 			snake.setNewPosition();
-			console.log("y", snake.positionY);
+			// console.log("y", snake.positionY);
 			displaySnake();
 		},
 		goUp: function () {
 			snake.positionY--;
 			snake.setNewPosition();
-			console.log("y", snake.positionY);
+			// console.log("y", snake.positionY);
 			displaySnake();
 		},
 	}
@@ -88,7 +89,6 @@ const startingPositionY = 3;
 	let positionX;
 
 	function displaySnake() {
-		console.log(snake.snakePosition);
 		area.forEach(function (element, index) {
 			positionY = snake.width * index;
 
@@ -109,30 +109,40 @@ const startingPositionY = 3;
 	}
 
 
+	// Test if the player lose the game
+	function testGameOver() {
+		snake.presence.forEach(function(element) {
+			if(snake.positionX === element.x
+			&& snake.positionY === element.y
+			&& element !== snake.presence[snake.presence.length-1]) {
+				gameOver();
+			}
+		});
+
+		if (snake.positionX < 0 || snake.positionX > 20 
+		 || snake.positionY < 0 || snake.positionY > 20) {
+			gameOver();
+		}
+	}
 
 	let snakeLeft;
 	let snakeRight;
 	let snakeUp;
 	let snakeDown;
 
-
+	// When the game is over is resets
 	function gameOver() {
-		if (snake.positionX < 0
-		 || snake.positionX > 20 
-		 || snake.positionY < 0 
-		 || snake.positionY > 20
-		 ) {
-			alert('game over');
+				alert('game over');
 			window.clearInterval(snakeUp);
 			window.clearInterval(snakeLeft);
 			window.clearInterval(snakeRight);
 			window.clearInterval(snakeDown);
 
+			location.reload();
 			snake.positionX = startingPositionX;
 			snake.positionY = startingPositionY;
-			location.reload();
-		}
 	}
+
 	// Change snake direction with arrow keys
 	document.addEventListener('keydown', (e) => {
 		// On arrow left key press 
