@@ -36,22 +36,25 @@ const areaBackgroundColor = "#FFFFFF";
 const startingPositionX = 3;
 const startingPositionY = 3;
 
-		console.log(area);
-
 	// Snake's settings and methods
 	const snake = {
 		width: 25,
 		speed: 150,
-		length: 3,
+		length: 8,
 		color: "#64b5f6",
 		snakePosition: [],
 		positionX: startingPositionX,
 		positionY: startingPositionY,
 		setNewPosition: function () {
 			gameOver();
-			const newPosition = area[snake.positionY][snake.positionX] = 1;
+			area[snake.positionY][snake.positionX] = 1;
+			const newPosition = {x : snake.positionX, y: snake.positionY};
 			snake.snakePosition.push(newPosition);
 
+			if (snake.snakePosition.length > snake.length) {
+				const oldPosition = snake.snakePosition.shift();
+				area[oldPosition.y][oldPosition.x] = 0;
+			}
 
 		},
 		goRight: function () {
@@ -80,12 +83,12 @@ const startingPositionY = 3;
 		},
 	}
 
-
 // displaySnake function draw the snake in the canvas area with informations from the area array
 	let positionY;
 	let positionX;
 
 	function displaySnake() {
+		console.log(snake.snakePosition);
 		area.forEach(function (element, index) {
 			positionY = snake.width * index;
 
