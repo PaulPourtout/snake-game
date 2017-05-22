@@ -30,7 +30,6 @@
 			apple.positionY = Math.floor(Math.random() * (20));
 
 			snake.presence.forEach(function (element) {
-				console.log(element);
 				if (apple.positionX === element.x && apple.positionY === element.y) {
 					apple.positionX = Math.floor(Math.random() * (20));
 					apple.positionY = Math.floor(Math.random() * (20));
