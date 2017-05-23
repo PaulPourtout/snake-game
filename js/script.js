@@ -153,14 +153,14 @@
 			if (snake.positionX === element.x
 				&& snake.positionY === element.y
 				&& element !== snake.presence[snake.presence.length - 1]) {
-				gameOver();
+				gameOver('bite yourself !');
 			}
 		});
 
 		// If the snake touch borders
 		if (snake.positionX < 0 || snake.positionX > 20
 			|| snake.positionY < 0 || snake.positionY > 20) {
-			gameOver();
+			gameOver('crossed the borders !');
 		}
 	}
 
@@ -171,21 +171,21 @@
 	let snakeUp;
 	let snakeDown;
 
-const gameOverScreen = document.getElementById('game-over');
+	const gameOverScreen = document.getElementById('game-over');
+	const restart = document.getElementById('restart');
+	restart.addEventListener('click', newGame);
+	const reasonLost = document.getElementById('reason-lost');
 	// When the game is over it resets
-	function gameOver() {
+	function gameOver(reason) {
 		window.clearInterval(snakeUp);
 		window.clearInterval(snakeLeft);
 		window.clearInterval(snakeRight);
 		window.clearInterval(snakeDown);
 		// alert('Game over ! try again');
+		reasonLost.innerHTML = "You just " + reason;
 		gameOverScreen.style.display = 'flex';
-		ctx.font = "20px Georgia";
-		ctx.fillText("Hello World!", 10, 50);
 	}
 
-const restart = document.getElementById('restart');
-restart.addEventListener('click', newGame);
 
 	function newGame() {
 		snake.presence = [];
@@ -248,7 +248,7 @@ restart.addEventListener('click', newGame);
 	// Generate the area and the first apple before the player starts playing
 	generateArea();
 	apple.generateApple();
-	// displaySnakeAndApples();
+	displaySnakeAndApples();
 
 
 	const startingInfo = document.getElementById('starting-info');

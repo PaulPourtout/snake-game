@@ -92,6 +92,12 @@ h1 {
 	font-size: 2.3rem;
 }
 
+#game-over #reason-lost {
+	color: #64b5f6;
+	font-size: 1.8rem;
+	margin: 10px;
+}
+
 #game-over button {
 	background-color: #ea6b20;
 	box-shadow: none;
