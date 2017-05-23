@@ -1,15 +1,21 @@
 (function () {
 	const canvas = document.getElementById('gameArea');
 	const ctx = canvas.getContext('2d');
+	const cellNumbers = 20;
 
-	// object representing the game area as an array
-	const area = [];
-	for (let i = 0; i < 20; i++) {
-		area.push([]);
-		for (let y = 0; y < 20; y++) {
-			area[i].push(0);
+	let area = [];
+	// array representing the game area as an array
+	function generateArea() {
+		area = [];
+		for (let i = 0; i < cellNumbers; i++) {
+			area.push([]);
+			for (let y = 0; y < cellNumbers; y++) {
+				area[i].push(0);
+			}
 		}
 	}
+
+
 
 
 	const score = document.getElementById('score');
@@ -21,7 +27,7 @@
 	// Apples' settings and methods
 	const apple = {
 		color: "#ea6b20",
-		width: 25,
+		width: (canvas.width / cellNumbers), // 25
 		positionX: null,
 		positionY: null,
 		getApplePosition: function () {
@@ -46,7 +52,7 @@
 	// Snake's settings and methods
 	const snake = {
 		apples: 0,
-		width: 25,
+		width: (canvas.width / cellNumbers), // 25
 		speed: 200,
 		length: 3,
 		color: "#64b5f6",
@@ -128,6 +134,17 @@
 		});
 	}
 
+	// If the snake eat an apple increase snake's length and speed
+	function eatApple() {
+		// If head of the snake touch an apple
+		if (apple.positionX === snake.positionX && apple.positionY === snake.positionY) {
+			snake.apples++;
+			score.innerHTML = snake.apples < 10 ? '0' + snake.apples : snake.apples;
+			apple.generateApple();
+			snake.speed = snake.speed - 5;
+			snake.length++;
+		}
+	}
 
 	// Test if the player lose the game
 	function testGameOver() {
@@ -148,43 +165,48 @@
 	}
 
 
-	// If the snake eat an apple increase snake's length and speed
-	function eatApple() {
-		// If head of the snake touch an apple
-		if (apple.positionX === snake.positionX && apple.positionY === snake.positionY) {
-			snake.apples++;
-			score.innerHTML = snake.apples < 10 ? '0' + snake.apples : snake.apples;
-			apple.generateApple();
-			snake.speed = snake.speed - 5;
-			snake.length++;
-		}
-	}
 
 	let snakeLeft;
 	let snakeRight;
 	let snakeUp;
 	let snakeDown;
 
+const gameOverScreen = document.getElementById('game-over');
 	// When the game is over it resets
 	function gameOver() {
-		alert('Game over ! try again');
 		window.clearInterval(snakeUp);
 		window.clearInterval(snakeLeft);
 		window.clearInterval(snakeRight);
 		window.clearInterval(snakeDown);
-
-		location.reload();
-		snake.positionX = startingPositionX;
-		snake.positionY = startingPositionY;
+		// alert('Game over ! try again');
+		gameOverScreen.style.display = 'flex';
+		ctx.font = "20px Georgia";
+		ctx.fillText("Hello World!", 10, 50);
 	}
 
-	// Change snake direction with arrow keys
+const restart = document.getElementById('restart');
+restart.addEventListener('click', newGame);
 
+	function newGame() {
+		snake.presence = [];
+		snake.speed = 200;
+		snake.length = 3;
+		snake.apples = 0;
+		score.innerHTML = '00';
+		snake.positionX = startingPositionX;
+		snake.positionY = startingPositionY;
+		generateArea();
+		apple.generateApple();
+		displaySnakeAndApples();
+		gameOverScreen.style.display = 'none';
+		// location.reload();
+	}
+
+
+
+	// Change snake direction with arrow keys
 	let previousKey;
 	document.addEventListener('keydown', (e) => {
-
-		console.log(previousKey);
-
 		// On arrow left key press 
 		if (e.keyCode === 37 && e.keyCode !== previousKey) {
 			snakeLeft = setInterval(snake.goLeft, snake.speed);
@@ -223,15 +245,16 @@
 		}
 	});
 
-	// Generate the first apple before the player starts playing
+	// Generate the area and the first apple before the player starts playing
+	generateArea();
 	apple.generateApple();
-	displaySnakeAndApples();
+	// displaySnakeAndApples();
 
 
 	const startingInfo = document.getElementById('starting-info');
 	document.addEventListener('keydown', (e) => {
 		if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
-		startingInfo.style.display = "none";
+			startingInfo.style.display = "none";
 		}
 	});
 

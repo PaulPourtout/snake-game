@@ -64,3 +64,47 @@ h1 {
 	font-weight: bold;
 	font-size: 1.3rem;
 }
+
+#game-over {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 10000;
+	background-color: rgba(0,0,0,0.3);
+}
+
+#game-over h3 {
+	font-size: 6rem;
+	color: #ea6b20;
+	margin: 0px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#game-over p {
+	color: #fff;
+	font-size: 2.3rem;
+}
+
+#game-over button {
+	background-color: #ea6b20;
+	box-shadow: none;
+	color: #fff;
+	font-size: 1.2rem;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+	border: 3px solid #ea6b20;
+}
+
+#game-over button:hover {
+	background-color: #db5c10;
+	border: 3px solid #fff;
+}
