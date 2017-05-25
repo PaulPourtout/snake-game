@@ -1,10 +1,38 @@
 (function () {
 	const canvas = document.getElementById('gameArea');
 	const ctx = canvas.getContext('2d');
+
+	// Aspects variables
+	const startingPositionX = 3;
+	const startingPositionY = 3;
+	const areaBackgroundColor = "#FFFFFF";
+	const color1 = "#aadd39";
+	const color2 = "#ea6b20";
+
+	// DOM Elements
+	const score = document.getElementById('score');
+	const startingInfo = document.getElementById('starting-info');
+
+	// Game over DOM elements
+	const gameOverScreen = document.getElementById('game-over');
+	const restart = document.getElementById('restart');
+	const reasonLost = document.getElementById('reason-lost');
+
+	// Snake directions variables
+	let snakeLeft;
+	let snakeRight;
+	let snakeUp;
+	let snakeDown;
+
+	// Audio elements
+	const gameOverAudio = document.getElementById('game-over-audio');
+	const eatAppleAudio = document.getElementById('eat-apple-audio');
+
+	// Area related variables
+	let area = [];
 	const cellNumbers = 20;
 
-	let area = [];
-	// array representing the game area as an array
+	// Array representing the game area
 	function generateArea() {
 		area = [];
 		for (let i = 0; i < cellNumbers; i++) {
@@ -14,15 +42,6 @@
 			}
 		}
 	}
-	
-
-	const score = document.getElementById('score');
-	const areaBackgroundColor = "#FFFFFF";
-	const startingPositionX = 3;
-	const startingPositionY = 3;
-	const color1 = "#aadd39";
-	const color2 = "#ea6b20";
-
 
 	// Apples' settings and methods
 	const apple = {
@@ -134,7 +153,7 @@
 		});
 	}
 
-	const eatAppleAudio = document.getElementById('eat-apple-audio');
+
 	// If the snake eat an apple increase snake's length and speed
 	function eatApple() {
 		// If head of the snake touch an apple
@@ -166,18 +185,6 @@
 		}
 	}
 
-
-
-	let snakeLeft;
-	let snakeRight;
-	let snakeUp;
-	let snakeDown;
-
-	const gameOverScreen = document.getElementById('game-over');
-	const restart = document.getElementById('restart');
-	restart.addEventListener('click', newGame);
-	const reasonLost = document.getElementById('reason-lost');
-	gameOverAudio = document.getElementById('game-over-audio');
 	// When the game is over it resets
 	function gameOver(reason) {
 		window.clearInterval(snakeUp);
@@ -190,8 +197,8 @@
 		gameOverAudio.play();
 	}
 
-
 	function newGame() {
+		// Restarting all game variables
 		snake.presence = [];
 		snake.speed = 200;
 		snake.length = 3;
@@ -199,15 +206,18 @@
 		score.innerHTML = '00';
 		snake.positionX = startingPositionX;
 		snake.positionY = startingPositionY;
+
 		generateArea();
 		apple.generateApple();
 		displaySnakeAndApples();
+
 		gameOverScreen.style.display = 'none';
-		// location.reload();
+		startingInfo.style.display = "flex";
+
+		hideStartingInfoDisplay();
 		gameOverAudio.currentTime = 0;
 		gameOverAudio.pause();
 	}
-
 
 
 	// Change snake direction with arrow keys
@@ -251,17 +261,20 @@
 		}
 	});
 
+	function hideStartingInfoDisplay() {
+		document.addEventListener('keydown', (e) => {
+			if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
+				startingInfo.style.display = "none";
+			}
+		});
+	}
+
 	// Generate the area and the first apple before the player starts playing
 	generateArea();
 	apple.generateApple();
 	displaySnakeAndApples();
-
-
-	const startingInfo = document.getElementById('starting-info');
-	document.addEventListener('keydown', (e) => {
-		if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
-			startingInfo.style.display = "none";
-		}
-	});
+	restart.addEventListener('click', newGame);
+	hideStartingInfoDisplay();
+	
 
 })()
