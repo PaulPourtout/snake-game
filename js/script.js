@@ -14,19 +14,19 @@
 			}
 		}
 	}
-
-
-
+	
 
 	const score = document.getElementById('score');
 	const areaBackgroundColor = "#FFFFFF";
 	const startingPositionX = 3;
 	const startingPositionY = 3;
+	const color1 = "#aadd39";
+	const color2 = "#ea6b20";
 
 
 	// Apples' settings and methods
 	const apple = {
-		color: "#ea6b20",
+		color: color2,
 		width: (canvas.width / cellNumbers), // 25
 		positionX: null,
 		positionY: null,
@@ -55,7 +55,7 @@
 		width: (canvas.width / cellNumbers), // 25
 		speed: 200,
 		length: 3,
-		color: "#64b5f6",
+		color: color1,
 		presence: [],
 		positionX: startingPositionX,
 		positionY: startingPositionY,
@@ -134,6 +134,7 @@
 		});
 	}
 
+	const eatAppleAudio = document.getElementById('eat-apple-audio');
 	// If the snake eat an apple increase snake's length and speed
 	function eatApple() {
 		// If head of the snake touch an apple
@@ -143,6 +144,7 @@
 			apple.generateApple();
 			snake.speed = snake.speed - 5;
 			snake.length++;
+			eatAppleAudio.play();
 		}
 	}
 
@@ -175,6 +177,7 @@
 	const restart = document.getElementById('restart');
 	restart.addEventListener('click', newGame);
 	const reasonLost = document.getElementById('reason-lost');
+	gameOverAudio = document.getElementById('game-over-audio');
 	// When the game is over it resets
 	function gameOver(reason) {
 		window.clearInterval(snakeUp);
@@ -184,6 +187,7 @@
 		// alert('Game over ! try again');
 		reasonLost.innerHTML = "You just " + reason;
 		gameOverScreen.style.display = 'flex';
+		gameOverAudio.play();
 	}
 
 
@@ -200,6 +204,8 @@
 		displaySnakeAndApples();
 		gameOverScreen.style.display = 'none';
 		// location.reload();
+		gameOverAudio.currentTime = 0;
+		gameOverAudio.pause();
 	}
 
 

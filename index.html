@@ -15,9 +15,9 @@
 		</div>
 		<div id="game-over">
 			<h3>Game Over</h3>
-			<p id='reason-lost'></p>
-			<p>Wanna try again ?</p>
-			<button id="restart">Restart Game</button>
+			<p id='reason-lost' class="fade-in"></p>
+			<p class="fade-in">Wanna try again ?</p>
+			<button class="fade-in" id="restart">Restart Game</button>
 		</div>
 		<h1>Classic Snake Game</h1>
 		<div id="game-container">
@@ -26,6 +26,10 @@
 				Message pour les navigateurs ne supportant pas canvas
 			</canvas>
 		</div>
+
+		<audio id="game-over-audio" src="./assests/game-over.mp3"></audio>
+		<audio id="eat-apple-audio" src="./assests/ateApple.mp3"></audio>
+
 
 		<script src="js/script.js"></script>
 	</body>
