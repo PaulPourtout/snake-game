@@ -91,7 +91,7 @@ h1 {
 	color: #ea6b20;
 	margin: 0px;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-	animation: scaleUp 2.5s ease-in;
+	animation: scaleUp 1s ease-in;
 }
 
 
@@ -99,13 +99,13 @@ h1 {
 	color: #64b5f6;
 	font-size: 1.8rem;
 	margin: 10px;
-	animation-delay: 5s;
+	animation-delay: 2s;
 }
 
 #game-over p {
 	color: #fff;
 	font-size: 2.3rem;
-	animation-delay: 5.5s;
+	animation-delay: 2.5s;
 }
 #game-over button {
 	background-color: #ea6b20;
@@ -117,7 +117,7 @@ h1 {
 	cursor: pointer;
 	transition: 0.3s;
 	border: 3px solid #ea6b20;
-	animation-delay: 6s;
+	animation-delay: 3s;
 }
 
 #game-over button:hover {

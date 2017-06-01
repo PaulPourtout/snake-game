@@ -30,7 +30,7 @@
 
 	// Area related variables
 	let area = [];
-	const cellNumbers = 20;
+	const cellNumbers = 30;
 
 	// Array representing the game area
 	function generateArea() {
@@ -51,13 +51,13 @@
 		positionY: null,
 		getApplePosition: function () {
 			// Create random apple position in area
-			apple.positionX = Math.floor(Math.random() * (20));
-			apple.positionY = Math.floor(Math.random() * (20));
+			apple.positionX = Math.floor(Math.random() * (cellNumbers));
+			apple.positionY = Math.floor(Math.random() * (cellNumbers));
 
 			snake.presence.forEach(function (element) {
 				if (apple.positionX === element.x && apple.positionY === element.y) {
-					apple.positionX = Math.floor(Math.random() * (20));
-					apple.positionY = Math.floor(Math.random() * (20));
+					apple.positionX = Math.floor(Math.random() * (cellNumbers));
+					apple.positionY = Math.floor(Math.random() * (cellNumbers));
 				}
 			});
 		},
@@ -179,8 +179,8 @@
 		});
 
 		// If the snake touch borders
-		if (snake.positionX < 0 || snake.positionX > 20
-			|| snake.positionY < 0 || snake.positionY > 20) {
+		if (snake.positionX < 0 || snake.positionX > cellNumbers
+			|| snake.positionY < 0 || snake.positionY > cellNumbers) {
 			gameOver('crossed the borders !');
 		}
 	}
@@ -195,6 +195,7 @@
 		reasonLost.innerHTML = "You just " + reason;
 		gameOverScreen.style.display = 'flex';
 		gameOverAudio.play();
+		gameOverAudio.volume = 0;
 	}
 
 	function newGame() {
