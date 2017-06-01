@@ -87,6 +87,15 @@ h1 {
 	border-radius: 2.5px;
 }
 
+#audio-icon {
+	background-image: url('../assests/img/sound.png');
+	height: 20px;
+	width: 20px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
 .audio-bar.active {
 	background-color: #64b5f6;
 }
