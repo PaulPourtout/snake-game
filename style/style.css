@@ -48,6 +48,7 @@ h1 {
 #gameArea {
 	background-color: white;
 	border: 4px solid #64b5f6;
+	overflow: visible;
 }
 
 #game-container {
@@ -69,6 +70,25 @@ h1 {
 #score {
 	font-weight: bold;
 	font-size: 1.3rem;
+}
+
+#audio-controller {
+	display: flex;
+	position: absolute;
+	top: 100%;
+	left: 0;
+}
+
+.audio-bar {
+	width : 5px;
+	height: 20px;
+	margin-right: 5px;
+	background-color: #c6c6c6;
+	border-radius: 2.5px;
+}
+
+.audio-bar.active {
+	background-color: #64b5f6;
 }
 
 #game-over {
