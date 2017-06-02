@@ -25,7 +25,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	z-index: 10000;
+	z-index: 100;
 	background-color: rgba(0,0,0,0.3);
 }
 
@@ -77,14 +77,7 @@ h1 {
 	position: absolute;
 	top: 100%;
 	left: 0;
-}
-
-.audio-bar {
-	width : 5px;
-	height: 20px;
-	margin-right: 5px;
-	background-color: #c6c6c6;
-	border-radius: 2.5px;
+	z-index: 150;
 }
 
 #audio-icon {
@@ -94,6 +87,18 @@ h1 {
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.audio-control {
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.audio-bar {
+	width : 5px;
+	height: 20px;
+	background-color: #c6c6c6;
+	border-radius: 2.5px;
 }
 
 .audio-bar.active {
@@ -111,7 +116,7 @@ h1 {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	z-index: 10000;
+	z-index: 100;
 	background-color: rgba(0,0,0,0.3);
 }
 
