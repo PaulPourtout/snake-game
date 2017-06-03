@@ -10,9 +10,12 @@
 	</head>
 
 	<body>
+		<!-- Before starting the game give infos on the rules -->
 		<div id="starting-info">
 			<p>Touch any arrow key to start the game</p>
 		</div>
+
+		<!-- End of the game -->
 		<div id="game-over">
 			<h3>Game Over</h3>
 			<p id='reason-lost' class="fade-in"></p>
@@ -22,12 +25,31 @@
 				<button class="fade-in" id="saveScore">Save Score</button>
 			</div>
 		</div>
+
+		<!-- Modal : Register user's score -->
+		<form id="save-score-form" method="POST" action="/api/scores">
+			<p>Enter your name in the hall of fame :</p>
+			<div>
+				<p class="flex-align">
+					<span>Your name is :</span><input type="text" name="username" placeholder="Username" />
+				</p>
+				<p class="flex-align">
+					<span>Your score is :</span><input id="actual-score" type="text" readonly="readonly" name="score"/>
+				</p>
+				<input type="submit" value="Save the score">
+			</div>
+		</form>
+
+		<button id="display-best-scores">Best scores</button>
+		<!-- Game Area -->
 		<h1>Classic Snake Game</h1>
 		<div id="game-container">
 			<p id="score-container">Apples : <span id="score">00</span></p>
 			<canvas id="gameArea" width="500" height="500">
 				Message pour les navigateurs ne supportant pas canvas
 			</canvas>
+
+			<!-- Control sounds of the game -->
 			<div id="audio-controller">
 				<div class="audio-control" id="audio-icon"></div>
 				<div class="audio-control audio-bar active"></div>
@@ -37,38 +59,20 @@
 				<div class="audio-control audio-bar"></div>
 			</div>
 
+			<!-- Modal : best scores of players -->
+			
 			<div id="scores-container">
-				<h3>Players scores :</h3>
-				<ul id="players-scores">
-					<li>
-						<p>Name : Polo</p>
-						<p>Score : 34</p>
-					</li>
-					<li>
-						<p>Name : Polo</p>
-						<p>Score : 34</p>
-					</li>
-					<li>
-						<p>Name : Polo</p>
-						<p>Score : 34</p>
-					</li>
-					<li>
-						<p>Name : Polo</p>
-						<p>Score : 34</p>
-					</li>
-					<li>
-						<p>Name : Polo</p>
-						<p>Score : 34</p>
-					</li>
-
-				</ul>
+				<h3>Top 10 scores :</h3>
+				<ul id="players-scores"></ul>
 			</div>
+
 		</div>
 
+		<!-- import sounds of the game -->
 		<audio id="game-over-audio" src="./assests/sounds/game-over.mp3"></audio>
 		<audio id="eat-apple-audio" src="./assests/sounds/ateApple.mp3"></audio>
 
-
+		<!-- Scripts of the game -->
 		<script src="./js/constantes.js"></script>
 		<script src="./js/parameters.js"></script>
 		<script src="./js/soundControl.js"></script>

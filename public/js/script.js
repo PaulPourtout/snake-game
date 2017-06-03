@@ -11,5 +11,28 @@ function hideStartingInfoDisplay() {
 	});
 }
 
+saveScore.addEventListener('click', e => {
+	saveScoreForm.style.display = 'flex';
+	actualScore.setAttribute("value", snake.apples);
+})
+
+fetch('/api/scores/best')
+	.then(res => res.json())
+	.then(scores => {
+		scores.forEach(function (score, index) {
+			const newScore = document.createElement('li');
+			newScore.innerHTML = `<p>${index + 1}. Name : ${score.username}</p><p>Score : ${score.score}</p>`;
+			playersScores.appendChild(newScore);
+		})
+	})
+	.catch(err => console.log('error ', err));
+
+
+displayBestScores.addEventListener('click', e => {
+	window.getComputedStyle(scoresContainer).display === 'none'
+		? scoresContainer.style.display = 'flex'
+		: scoresContainer.style.display = 'none';
+});
+
 hideStartingInfoDisplay();
 

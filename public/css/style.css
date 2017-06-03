@@ -21,6 +21,9 @@ body {
 	animation-fill-mode: forwards;
 }
 
+
+/* Display Starting Infos */
+
 #starting-info {
 	position: absolute;
 	height: 100%;
@@ -52,6 +55,8 @@ h1 {
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+/* Display Game Area */
 #gameArea {
 	background-color: white;
 	border: 4px solid #64b5f6;
@@ -78,6 +83,7 @@ h1 {
 	font-weight: bold;
 	font-size: 1.3rem;
 }
+
 
 #audio-controller {
 	display: flex;
@@ -112,9 +118,86 @@ h1 {
 	background-color: #64b5f6;
 }
 
+#display-best-scores {
+	background-color: #ea6b20;
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	border: none;
+	padding: 15px;
+	border-radius: 2px;
+	text-transform: uppercase;
+	color: #fff;
+	z-index: 300;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+#display-best-scores:hover {
+	background-color: #d85b11;
+}
+
+/* Display Record Score */
+#save-score-form {
+	display: none;
+	height: 50vh;
+	background-color: #64b5f6;
+	color: #fff;
+	border: 3px solid #fff;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	position: absolute;
+	z-index: 300;
+}
+
+#save-score-form>p:nth-of-type(1) {
+	font-size: 1.5rem;
+	margin-bottom: 50px;
+	text-transform: uppercase;
+}
+
+#save-score-form>div {
+	width: 100%;
+}
+
+#save-score-form p {
+	width: 100%;
+	text-align: center;
+	margin-top: 0;
+	font-size: 1.2rem;
+	margin-bottom: 20px;
+}
+
+#save-score-form input[type="text"] {
+	background-color: #cee9ff;
+	color: #6F6F6F;
+	box-shadow: none;
+	border: none;
+	padding: 5px 10px;
+	text-align: left;
+	font-size: 1.2rem;
+	margin-left: 20px;
+}
+
+#save-score-form input[type="submit"] {
+	background-color: #ea6b20;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+
+/* Display best scores */
 #scores-container {
 	display: none;
 	position: absolute;
+	flex-direction: column;
 	z-index: 200;
 	height: 70vh;
 	width: 80%;
@@ -140,12 +223,15 @@ h1 {
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid #E7E7E7;
+	margin-bottom: 15px;
 }
 
 #players-scores li p {
 	margin: 5px 0;
 }
 
+
+/* Display Game Over */
 #game-over {
 	position: absolute;
 	height: 100%;
@@ -202,7 +288,7 @@ h1 {
 }
 
 
-
+/* Animations */
 @keyframes scaleUp {
 	from { transform: scale(0); }
 	to 	 { transform: scale(1); }
