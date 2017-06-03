@@ -54,7 +54,6 @@ apiRouter.get('/scores/best', (req, res) => {
 		.exec(function (err, scores) {
 			if (err) console.log('error ', err);
 
-			console.log(scores);
 			res.json(scores);
 		});
 });
