@@ -4,7 +4,8 @@
   "description": "Find the game here : https://paulpourtout.github.io/snake-game/",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongoose": "^4.10.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
