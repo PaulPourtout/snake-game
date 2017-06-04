@@ -39,15 +39,15 @@ app.use(cookieSession({
 // Set the API route 
 const apiRouter = express();
 
-apiRouter.get('/scores', (req, res) => {
-	Score.find({}, (err, scores) => {
+apiRouter.get('/scores', function(req, res) {
+	Score.find({}, function(err, scores) {
 		if (err) console.log('error ', err);
 
 		res.json(scores);
 	});
 });
 
-apiRouter.get('/scores/best', (req, res) => {
+apiRouter.get('/scores/best', function(req, res) {
 	Score.find({})
 		.sort('-score')
 		.limit(10)
@@ -59,12 +59,12 @@ apiRouter.get('/scores/best', (req, res) => {
 });
 
 // Record a user's score
-apiRouter.post('/scores', (req, res) => {
+apiRouter.post('/scores', function(req, res) {
 	const newScore = new Score;
 	newScore.username = req.body.username === "" ? "Unknown" : req.body.username;
 	newScore.score = req.body.score;
 
-	newScore.save(err => {
+	newScore.save(function(err) {
 		if (err) res.send('error', err);
 
 		res.redirect('/');
