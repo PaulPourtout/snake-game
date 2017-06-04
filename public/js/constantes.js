@@ -24,6 +24,7 @@ let snakeUp;
 let snakeDown;
 
 // Audio elements
+const playAudio = document.getElementById('play-audio');
 const gameOverAudio = document.getElementById('game-over-audio');
 const eatAppleAudio = document.getElementById('eat-apple-audio');
 const audioControls = document.getElementsByClassName('audio-control');

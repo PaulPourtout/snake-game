@@ -4,21 +4,26 @@ displaySnakeAndApples(); // Draw shapes of apple and snake in the game area
 
 function hideStartingInfoDisplay() {
 	// On any arrow key press hide the first panel
-	document.addEventListener('keydown', (e) => {
-		if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
-			startingInfo.style.display = "none";
-		}
-	});
+	if (window.getComputedStyle(startingInfo).display === 'flex') {
+		document.addEventListener('keydown', (e) => {
+			if (e.keyCode === 37 || e.keyCode === 38 || e.keyCode === 39 || e.keyCode === 40) {
+				startingInfo.style.display = "none";
+				playAudio.play();
+			}
+		});
+	}
 }
 
 saveScore.addEventListener('click', e => {
 	saveScoreForm.style.display = 'flex';
 	actualScore.setAttribute("value", snake.apples);
-})
+});
 
+// Call the top ten scores from database
 fetch('/api/scores/best')
 	.then(res => res.json())
 	.then(scores => {
+		// For each score create a list item
 		scores.forEach(function (score, index) {
 			const newScore = document.createElement('li');
 			newScore.innerHTML = `<p>${index + 1}. Name : ${score.username}</p><p>Score : ${score.score}</p>`;

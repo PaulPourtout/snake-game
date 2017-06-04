@@ -11,6 +11,11 @@
 			}
 
 			globalVolume = i * volumeStep;
+
+			// change volumen of all elements
+			eatAppleAudio.volume = globalVolume;
+			gameOverAudio.volume = globalVolume;
+			playAudio.volume = globalVolume;
 		});
 	}
 })();
