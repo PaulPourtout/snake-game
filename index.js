@@ -75,4 +75,6 @@ apiRouter.post('/scores', function(req, res) {
 
 app.use('/api', apiRouter);
 
-app.listen(PORT, (req, res) => console.log(`Server runing on Port ${PORT}`));
+app.listen(PORT, function(req, res){
+	console.log(`Server runing on Port ${PORT}`)
+});
