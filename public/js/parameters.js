@@ -5,5 +5,6 @@ const areaBackgroundColor = "#FFFFFF";
 const color1 = "#aadd39";
 const color2 = "#ea6b20";
 
+let bestScoreEverValue = 0;
 // Default Sound Variable
 let globalVolume = 0.5;

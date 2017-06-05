@@ -19,8 +19,8 @@ function testGameOver() {
 
 // When the game is over it resets
 function gameOver(reason) {
-	playAudio.currentTime = 0;
-	playAudio.pause();
+	// playAudio.currentTime = 0;
+	// playAudio.pause();
 	window.clearInterval(snakeUp);
 	window.clearInterval(snakeLeft);
 	window.clearInterval(snakeRight);

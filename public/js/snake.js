@@ -46,10 +46,12 @@ const snake = {
 		if (apple.positionX === snake.positionX && apple.positionY === snake.positionY) {
 			snake.apples++;
 			score.innerHTML = snake.apples < 10 ? '0' + snake.apples : snake.apples;
+			// If player beat the best score record. Its score becomes orange
+			score.style.color = snake.apples <= bestScoreEverValue ? '#64b5f6' : '#ea6b20';
 			apple.generateApple();
 			snake.speed = snake.speed - 5;
-			snake.length++;
-			eatAppleAudio.play();
+			snake.length++; 
+			eatAppleAudio.play(); // Make a sound when eat apple
 			eatAppleAudio.volume = globalVolume;
 		}
 	}

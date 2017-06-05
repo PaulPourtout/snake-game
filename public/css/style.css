@@ -67,7 +67,7 @@ h1 {
 	position: relative;
 }
 
-#score-container {
+#score-container, #best-score-container {
 	color: #64b5f6;
 	font-size: 1.1rem;
 	border: 4px solid #64b5f6;
@@ -76,13 +76,20 @@ h1 {
 	background-color: #fff;
 	position: absolute;
 	top: -45px;
+}
+
+#score-container {
 	left: 0;
 }
 
+#best-score-container {
+	right: 0;
+}
 #score {
 	font-weight: bold;
 	font-size: 1.3rem;
 }
+
 
 
 #audio-controller {

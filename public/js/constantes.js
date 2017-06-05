@@ -11,20 +11,22 @@ const actualScore = document.getElementById('actual-score');
 const displayBestScores = document.getElementById('display-best-scores');
 const scoresContainer = document.getElementById('scores-container');
 const playersScores = document.getElementById('players-scores');
+const bestScoreEver = document.getElementById('best-score');
 
-// Game over DOM elements
+
+// Game over DOM elements ('gameOver.js')
 const gameOverScreen = document.getElementById('game-over');
 const restart = document.getElementById('restart');
 const reasonLost = document.getElementById('reason-lost');
 
-// Snake directions variables
+// Snake directions variables ('snakeController.js')
 let snakeLeft;
 let snakeRight;
 let snakeUp;
 let snakeDown;
 
 // Audio elements
-const playAudio = document.getElementById('play-audio');
+// const playAudio = document.getElementById('play-audio');
 const gameOverAudio = document.getElementById('game-over-audio');
 const eatAppleAudio = document.getElementById('eat-apple-audio');
 const audioControls = document.getElementsByClassName('audio-control');
